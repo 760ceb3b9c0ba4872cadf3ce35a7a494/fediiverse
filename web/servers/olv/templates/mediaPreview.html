@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="/static/styles/reset.css">
+	<link rel="stylesheet" href="/static/styles/style.css">
+	<link rel="stylesheet" href="/static/styles/mediaPreview.css">
+	<script>
+		var enlargeMsg = " Enlarge";
+		var shrinkMsg = " Shrink"
+
+		cave.toolbar_enableBackBtnFunc(false);
+		cave.toolbar_setVisible(true)
+		cave.toolbar_setButtonType(1);
+		cave.toolbar_setMode(1);
+		cave.toolbar_setWideButtonMessage(enlargeMsg);
+
+		cave.toolbar_setCallback(1, function() {
+			cave.transition_begin();
+			history.back();
+		});
+	</script>
+</head>
+<body>
+	<div class="mediaPreview">
+		<img
+			class="mediaPreview__img"
+			src="placeholder"
+			data-expand="false"
+		/>
+	</div>
+
+	<script>
+		var mediaPreviewImg = document.getElementsByClassName("mediaPreview__img")[0];
+		var expanded = false;
+
+		mediaPreviewImg.addEventListener("load", function() {
+			cave.transition_end();
+		});
+
+		if (mediaPreviewImg.complete) {
+			cave.transition_end();
+		}
+
+		mediaPreviewImg.addEventListener("error", function() {
+			history.back();
+		});
+
+		function updateExpanded() {
+			if (expanded) {
+				cave.toolbar_setWideButtonMessage(shrinkMsg);
+			} else {
+				cave.toolbar_setWideButtonMessage(enlargeMsg);
+			}
+			mediaPreviewImg.setAttribute("data-expand", expanded.toString());
+		}
+
+		cave.toolbar_setCallback(8, function() {
+			expanded = !expanded;
+			updateExpanded();
+		});
+
+		document.addEventListener("keydown", function(event) {
+			if (event.keyCode == 88) {
+				expanded = !expanded;
+				updateExpanded();
+			} else if (event.keyCode == 66) {
+				cave.transition_begin();
+				history.back();
+			}
+		});
+
+		/*
+		document.addEventListener("keyup", function(event) {
+			alert("keyCode=" + event.keyCode + " keyIdentifier=" + event.keyIdentifier);
+		});
+		*/
+	</script>
+</body>
+</html>

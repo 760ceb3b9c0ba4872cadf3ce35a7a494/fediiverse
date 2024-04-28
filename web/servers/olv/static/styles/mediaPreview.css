@@ -1,0 +1,35 @@
+html {
+}
+
+body {
+    background-image: none;
+    background: black;
+    overflow-y: auto !important;
+    overflow-x: auto !important;
+}
+
+.mediaPreview {
+    display: -webkit-box;
+    min-width: 400px;
+    min-height: 220px;
+    margin-bottom: 240px;
+
+    width: min-intrinsic;
+    width: min-content;
+    /* background: red; */
+
+    -webkit-box-align: center;
+    -webkit-box-direction: normal;
+    -webkit-box-lines: single;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: center;
+}
+
+.mediaPreview__img {
+    display: block;
+}
+
+.mediaPreview__img[data-expand=false] {
+    max-width: 400px;
+    max-height: 220px;
+}

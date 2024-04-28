@@ -1,0 +1,12 @@
+fastapi~=0.110.2
+pydantic~=1.10.12
+aiohttp~=3.9.5
+yarl~=1.9.4
+CairoSVG~=2.7.1
+aiofiles~=23.2.1
+emoji~=2.11.0
+beautifulsoup4~=4.12.2
+cryptography~=42.0.5
+uvicorn~=0.29.0
+python-dotenv~=1.0.1
+pydantic-xml~=1.0.0

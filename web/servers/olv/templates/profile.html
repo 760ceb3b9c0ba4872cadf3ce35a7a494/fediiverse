@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="/static/styles/reset.css">
+	<link rel="stylesheet" href="/static/styles/style.css">
+	<link rel="stylesheet" href="/static/styles/renderedText.css">
+	<link rel="stylesheet" href="/static/styles/profile.css">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+	<script src="/static/scripts/toolbar.js"></script>
+	<script src="/static/scripts/normal-page.js"></script>
+	<script src="/static/scripts/keys.js"></script>
+</head>
+<body>
+	<div class="content">
+		<div class="profile">
+			<div class="profile__banner"></div>
+			<div class="profile__header">
+				<img class="profile__avatar" />
+				<div class="profile__names">
+					<span class="profile__display-name"></span>
+					<span class="profile__acct-name"></span>
+				</div>
+			</div>
+			<div class="profile__stats">
+
+			</div>
+		</div>
+		<!-- <img src="/static/rgb.png" /> -->
+
+		<div class="profile-description">
+			<span class="profile-description__title">Description</span>
+			<div class="profile-description__text rendered-text"></div>
+		</div>
+
+		<div class="profile-fields">
+		</div>
+
+		<div class="status-list"></div>
+		<div class="big-button">
+			<button class="big-button__button" id="load-older-button">
+				Older
+			</button>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.env
+*.env
+.venv
+.idea/
+build/
+out/
+code.bin
+*.ips
+*.pem
+*.der
+.DS_Store

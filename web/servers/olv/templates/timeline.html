@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="/static/styles/reset.css">
+	<link rel="stylesheet" href="/static/styles/style.css">
+	<link rel="stylesheet" href="/static/styles/renderedText.css">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+	<script src="/static/scripts/tabs.js"></script>
+	<script src="/static/scripts/toolbar.js"></script>
+	<script src="/static/scripts/normal-page.js"></script>
+	<script onload="initTabs();" src="/static/scripts/keys.js"></script>
+</head>
+<body>
+	<div class="content">
+		<div class="header">
+			<div class="header__banner">
+			</div>
+			<div class="header__info">
+				<img id="tab-home" src="/static/tabs/home-up.png" />
+				<img id="tab-explore" src="/static/tabs/explore-up.png" />
+				<img id="tab-local" src="/static/tabs/local-up.png" />
+				<img id="tab-federated" src="/static/tabs/federated-up.png" />
+			</div>
+		</div>
+		<!-- <img src="/static/rgb.png" /> -->
+		<div class="status-list"></div>
+		<div class="big-button">
+			<button class="big-button__button" id="load-older-button">
+				Older
+			</button>
+		</div>
+	</div>
+</body>
+</html>
