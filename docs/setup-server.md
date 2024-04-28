@@ -99,4 +99,4 @@ to do a "full stack test" you can try using your computer (or another device wit
 and navigating to `https://3ds.fediiverse.local/timeline?kind=home`. that should bring up the same page as before.
 
 
-<a href="./setup-client.md"><h3>the next step: setup the 3ds!! &#x3E;w&#x3C;</h3><a>
+### [the next step: setup the 3ds!! >w<](setup-client.md)
