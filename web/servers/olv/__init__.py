@@ -6,7 +6,7 @@ import json
 import re
 import string
 from pathlib import Path
-from typing import Optional, Literal, Annotated
+from typing import Optional, Literal, Annotated, Any
 
 import cairosvg
 import aiofiles
@@ -38,6 +38,28 @@ http = aiohttp.ClientSession()
 root_path = Path(__file__).parent
 templates_path = root_path / "templates"
 static_path = root_path / "static"
+
+
+class NoCacheStaticFiles(StaticFiles):
+	# https://stackoverflow.com/a/77823873
+	def __init__(self, *args: Any, **kwargs: Any):
+		self.cache_control = "max-age=0, no-cache, no-store, must-revalidate"
+		self.pragma = "no-cache"
+		self.expires = "0"
+		super().__init__(*args, **kwargs)
+
+	def is_not_modified(
+        self, *args: Any, **kwargs: Any
+    ) -> bool:
+		return False
+
+	def file_response(self, *args: Any, **kwargs: Any) -> Response:
+		resp = super().file_response(*args, **kwargs)
+		resp.headers.setdefault("Cache-Control", self.cache_control)
+		resp.headers.setdefault("Pragma", self.pragma)
+		resp.headers.setdefault("Expires", self.expires)
+		return resp
+
 
 app = FastAPI()
 app.mount(
