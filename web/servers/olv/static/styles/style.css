@@ -96,7 +96,7 @@ body {
     height: 14px;
 
     white-space: nowrap;
-    overflow-x: hidden;
+    overflow: hidden;
 
     color: rgba(0, 0, 0, 0.66);
 }
