@@ -25,6 +25,7 @@ from .mastodon import Client
 from .mastodon.models.custom_emoji import CustomEmoji
 from .mastodon.models.filter import FilterAction
 from .mastodon.models.media_attachment import MediaAttachmentType
+from .mastodon.models.preview_card import PreviewCardType
 from .mastodon.models.status import Status, StatusVisibility
 
 load_dotenv()
@@ -540,6 +541,72 @@ def render_status(status: Status, container: Tag, soup: BeautifulSoup):
 
 		content_el.append(media_gallery)
 
+	# RENDER CONTENT CARD:
+	if status.card:
+		card = status.card
+
+		if card.provider_name:
+			provider = card.provider_name
+		elif card.url:
+			provider = URL(card.url).host
+		else:
+			provider = None
+
+		interactive = card.type == PreviewCardType.VIDEO
+		large_image = interactive or (card.image and (card.width > card.height))
+
+		card_el = soup.new_tag("a", attrs={
+			"class": "status-card",
+			"data-large-image": "true" if large_image else "false",
+
+			"href": card.url,
+			"target": "_blank",
+			"rel": "nofollow noopener noreferrer",  # not like it matters...
+			"onclick": f"event.preventDefault(); promptLink({card.url!r});"
+		})
+
+		card_image_el = soup.new_tag("div", attrs={
+			"class": "status-card__image",
+			"style": f"background-image: url({proxy_url(card.image)!r})"
+		})
+		card_el.append(card_image_el)
+
+		card_content_el = soup.new_tag("div", attrs={
+			"class": "status-card__content"
+		})
+		card_host_el = soup.new_tag("span", attrs={
+			"class": "status-card__host"
+		})
+		if provider:
+			card_provider_el = soup.new_tag("span")
+			card_provider_el.string = provider
+			card_host_el.append(card_provider_el)
+		card_content_el.append(card_host_el)
+
+		card_title_el = soup.new_tag("span", attrs={
+			"class": "status-card__title"
+		})
+		card_title_el.string = card.title
+		card_content_el.append(card_title_el)
+
+		if card.author_name:
+			card_author_el = soup.new_tag("span", attrs={
+				"class": "status-card__author"
+			})
+			card_author_el.string = f"by {card.author_name}"
+			card_content_el.append(card_author_el)
+		else:
+			card_description_el = soup.new_tag("span", attrs={
+				"class": "status-card__description"
+			})
+			card_description_el.string = card.description
+			card_content_el.append(card_description_el)
+
+		card_el.append(card_content_el)
+
+		content_el.append(card_el)
+
+	# OK DONE
 	status_el.append(content_el)
 
 	actions_el = soup.new_tag("div", attrs={"class": "status__actions"})

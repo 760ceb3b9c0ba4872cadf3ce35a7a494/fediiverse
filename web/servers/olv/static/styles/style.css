@@ -22,6 +22,10 @@ body {
     overflow-x: hidden;
 }
 
+button {
+    cursor: pointer;
+}
+
 .content {
     display: -webkit-box;
     -webkit-box-align: center;
@@ -508,6 +512,85 @@ html[data-is-miiverse=true] .media-gallery__item-alt-button {
     margin-top: 6px;
 }
 
-button {
+.status-card {
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    margin-top: 8px;
+    background: white;
+
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-pack: start;
+    border-radius: 1px;
+
+    color: inherit !important;  /* override a tag override */
     cursor: pointer;
+    text-decoration: none;
+}
+
+.status-card__content {
+    padding: 8px;
+    display: -webkit-box;
+    -webkit-box-align: stretch;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: start;
+    -webkit-box-flex: 1;
+    overflow: hidden;
+}
+
+.status-card__image {
+    display: block;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: rgba(0, 0, 0, 0.1);
+
+    height: 96px;
+    width: 96px;
+}
+
+.status-card[data-large-image=true] {
+    -webkit-box-align: stretch;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: start;
+    height: unset;
+}
+
+.status-card[data-large-image=true] .status-card__image {
+    height: 0px;
+    width: auto;
+    padding-top: 56.25%;
+}
+
+.status-card__host {
+    font-size: 12px;
+    line-height: 14px;
+    margin-bottom: 3px;
+    color: rgba(0, 0, 0, 0.66);
+}
+
+.status-card__title {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 16px;
+}
+
+.status-card__author {
+    font-size: 11px;
+    line-height: 14px;
+    margin-top: 4px;
+}
+
+.status-card__description {
+    font-size: 12px;
+    line-height: 14px;
+    margin-top: 4px;
+    white-space: nowrap;
+}
+
+.status-card__content > * {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

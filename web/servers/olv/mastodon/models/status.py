@@ -9,6 +9,7 @@ from .account import Account
 from .custom_emoji import CustomEmoji
 from .filter_result import FilterResult
 from .media_attachment import MediaAttachment
+from .preview_card import PreviewCard
 
 
 class StatusVisibility(Enum):
@@ -57,7 +58,7 @@ class Status(BaseModel):
     in_reply_to_account_id: Optional[str]
     reblog: Optional[Status]
     # poll
-    # card
+    card: Optional[PreviewCard]
     language: Optional[str]
     text: Optional[str]
     edited_at: Optional[datetime]

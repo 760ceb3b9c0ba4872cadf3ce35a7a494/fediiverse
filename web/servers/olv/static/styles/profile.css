@@ -165,7 +165,7 @@
 }
 
 .profile-field[data-verified=true] {
-    background: rgba(39, 196, 13, 0.22);
+    background: rgba(39, 196, 13, 0.06);
     color: rgb(20, 104, 6);
 }
 
