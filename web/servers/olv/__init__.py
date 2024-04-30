@@ -179,7 +179,7 @@ def format_timedelta_short(delta: datetime.timedelta):
 		if delta.seconds < 60:
 			return f"{delta.seconds}s"
 
-		if 60 <= delta.seconds < 3600:
+		if delta.seconds < 3600:
 			minutes = delta.seconds // 60
 			return f"{minutes}m"
 
@@ -286,10 +286,10 @@ def inline_emojify(text: string, shortcode_index: dict[str, CustomEmoji], soup: 
 
 
 def beautifully_insert_content(
-	content: str,
-	destination_el: Tag,
-	emojis: list[CustomEmoji],
-	soup: BeautifulSoup
+		content: str,
+		destination_el: Tag,
+		emojis: list[CustomEmoji],
+		soup: BeautifulSoup
 ):
 	content_shortcode_index = {
 		custom_emoji.shortcode: custom_emoji for custom_emoji in emojis
@@ -575,10 +575,14 @@ def render_status(status: Status, container: Tag, soup: BeautifulSoup):
 		action_el.append(action_inner_el)
 		actions_el.append(action_el)
 
+	time_delta = datetime.datetime.now(datetime.timezone.utc) - status.created_at
+
 	timedelta_el = soup.new_tag("span", attrs={
-		"class": "status__timedelta"
+		"class": "status__timedelta",
+		"data-timestamp-type": "timedelta",
+		"data-timestamp": int(status.created_at.timestamp())
 	})
-	timedelta_el.string = format_timedelta_short(datetime.datetime.now(datetime.timezone.utc) - status.created_at)
+	timedelta_el.string = format_timedelta_short(time_delta)
 	actions_el.append(timedelta_el)
 
 	actions_el.append(soup.new_tag("div", attrs={
