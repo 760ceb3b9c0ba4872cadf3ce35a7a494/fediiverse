@@ -520,7 +520,7 @@ def render_status(status: Status, container: Tag, soup: BeautifulSoup):
 
 				image_button_el = soup.new_tag("button", attrs={
 					"class": "media-gallery__item-button",
-					"onclick": f"previewImage({proxy_url(attachment.url, accept='jpeg')!r}, {parent_status.id!r})",
+					"onclick": f"previewImage({str(attachment.url)!r}, {parent_status.id!r})",
 					# "onkeydown": f"if (event.keyCode == 13) previewImage({proxy_url(attachment.url, accept='jpeg')!r}, {parent_status.id!r})",
 				})
 				image_el.append(image_button_el)
@@ -638,7 +638,7 @@ async def media_preview(url: str):
 		html = await file.read()
 
 	soup = BeautifulSoup(html, "html.parser")
-	soup.find(name="img")["src"] = url
+	soup.find(name="img")["src"] = proxy_url(url)
 	return HTMLResponse(
 		content=str(soup)
 	)
