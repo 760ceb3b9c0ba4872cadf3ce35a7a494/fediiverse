@@ -23,11 +23,7 @@ i think the one from homebrew on macos uses the openssl installed by brew by def
 next you need to start nginx using the /nginx directory. my goto command is `killall nginx; nginx -p ./nginx -c nginx.conf` from the root of this repo. this will use port 443 on your machine.
 (NOTE, the default logs path is `/var/log/nginx/3ds/`, so make sure that path exists or change it in the conf files!)
 
-now hopefully its working. check the logs to make sure. 
-
-to test if the old ssl support is working, you can use firefox. 
-add the ca_cert.pem to your firefox certificate store, then enable the `about:config` flag that enables >=sslv3 (security.tls.version.min i think). 
-then go to `https://127.0.0.1:443` and it should give you a Bad Gateway but the padlock should indicate your encryption is working.
+at this point it should be working. check the logs to make sure.
 
 ## step 4: dns
 make sure your computer is connected to the network your 3ds will be on. they should be on the same LAN and should be able to talk to eachother.
