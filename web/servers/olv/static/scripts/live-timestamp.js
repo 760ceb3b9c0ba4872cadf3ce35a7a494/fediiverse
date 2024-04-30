@@ -59,7 +59,6 @@ function formatTimedeltaShort(timedelta) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-try {
     var timestampElements = document.querySelectorAll("[data-timestamp]");
     var pairsList = [];
 
@@ -83,7 +82,4 @@ try {
             timestampEl.textContent = formattedDelta;
         })
     }, 1000 * 60)
-} catch (e) {
-    alert(e);
-}
 })
