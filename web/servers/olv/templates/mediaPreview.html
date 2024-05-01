@@ -52,6 +52,7 @@
 				cave.toolbar_setWideButtonMessage(enlargeMsg);
 			}
 			mediaPreviewImg.setAttribute("data-expand", expanded.toString());
+			cave.snd_playSe("SE_WAVE_SCROLL_PAGE");
 		}
 
 		cave.toolbar_setCallback(8, function() {
