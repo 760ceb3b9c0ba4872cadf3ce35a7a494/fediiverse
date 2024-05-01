@@ -60,7 +60,8 @@
     margin-bottom: 6px;
 }
 
-.rendered-text em {
+.rendered-text em,
+.rendered-text i {
     font-style: italic;
 }
 

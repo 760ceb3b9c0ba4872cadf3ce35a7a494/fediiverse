@@ -50,8 +50,8 @@ class NoCacheStaticFiles(StaticFiles):
 		super().__init__(*args, **kwargs)
 
 	def is_not_modified(
-        self, *args: Any, **kwargs: Any
-    ) -> bool:
+			self, *args: Any, **kwargs: Any
+	) -> bool:
 		return False
 
 	def file_response(self, *args: Any, **kwargs: Any) -> Response:
@@ -211,32 +211,43 @@ def format_timedelta_short(delta: datetime.timedelta):
 	return f"{years}y"
 
 
-def inline_emojify(text: string, shortcode_index: dict[str, CustomEmoji], soup: BeautifulSoup):
+def inline_emojify(
+	text: string,
+	soup: BeautifulSoup,
+	*,
+	shortcode_index: Optional[dict[str, CustomEmoji]] = None,
+):
+	"""
+	returns a list of elements representing the input string with all emojis converted to inline emoji elements.
+	if shortcode_index is specified custom emojis are also converted.
+	"""
+
 	text_matches: list[dict] = []
 
-	# PHASE 0: parse out the custom emojis
-	index = 0
-	shortcode_pattern = re.compile(":([a-zA-Z0-9_]+):")
+	if shortcode_index:
+		# PHASE 0: parse out the custom emojis
+		index = 0
+		shortcode_pattern = re.compile(":([a-zA-Z0-9_]+):")
 
-	while True:
-		match = shortcode_pattern.search(text, index)
-		if not match:
-			break
+		while True:
+			match = shortcode_pattern.search(text, index)
+			if not match:
+				break
 
-		match_start, match_end = match.span()
-		index = match_end
+			match_start, match_end = match.span()
+			index = match_end
 
-		match_shortcode = match.group(1)
-		if match_shortcode not in shortcode_index:
-			# invalid emoji
-			continue
+			match_shortcode = match.group(1)
+			if match_shortcode not in shortcode_index:
+				# invalid emoji
+				continue
 
-		text_matches.append({
-			"type": "custom_emoji",
-			"start": match_start,
-			"end": match_end,
-			"shortcode": match_shortcode
-		})
+			text_matches.append({
+				"type": "custom_emoji",
+				"start": match_start,
+				"end": match_end,
+				"shortcode": match_shortcode
+			})
 
 	# PHASE 1: parse out the unicode emojis
 	for emoji_match in emoji.emoji_list(text):
@@ -565,11 +576,12 @@ def render_status(status: Status, container: Tag, soup: BeautifulSoup):
 			"onclick": f"event.preventDefault(); promptLink({card.url!r});"
 		})
 
-		card_image_el = soup.new_tag("div", attrs={
-			"class": "status-card__image",
-			"style": f"background-image: url({proxy_url(card.image)!r})"
-		})
-		card_el.append(card_image_el)
+		if card.image:
+			card_image_el = soup.new_tag("div", attrs={
+				"class": "status-card__image",
+				"style": f"background-image: url({proxy_url(card.image)!r})"
+			})
+			card_el.append(card_image_el)
 
 		card_content_el = soup.new_tag("div", attrs={
 			"class": "status-card__content"
@@ -579,27 +591,28 @@ def render_status(status: Status, container: Tag, soup: BeautifulSoup):
 		})
 		if provider:
 			card_provider_el = soup.new_tag("span")
-			card_provider_el.string = provider
+			card_provider_el.extend(inline_emojify(provider, soup))
 			card_host_el.append(card_provider_el)
 		card_content_el.append(card_host_el)
 
 		card_title_el = soup.new_tag("span", attrs={
 			"class": "status-card__title"
 		})
-		card_title_el.string = card.title
+		card_title_el.extend(inline_emojify(card.title, soup))
 		card_content_el.append(card_title_el)
 
 		if card.author_name:
 			card_author_el = soup.new_tag("span", attrs={
 				"class": "status-card__author"
 			})
-			card_author_el.string = f"by {card.author_name}"
+			card_author_el.append("by ")
+			card_author_el.extend(inline_emojify(card.author_name, soup))
 			card_content_el.append(card_author_el)
 		else:
 			card_description_el = soup.new_tag("span", attrs={
 				"class": "status-card__description"
 			})
-			card_description_el.string = card.description
+			card_description_el.extend(inline_emojify(card.description, soup))
 			card_content_el.append(card_description_el)
 
 		card_el.append(card_content_el)

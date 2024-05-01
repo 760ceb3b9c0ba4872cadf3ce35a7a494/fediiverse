@@ -545,8 +545,8 @@ html[data-is-miiverse=true] .media-gallery__item-alt-button {
     background-position: center center;
     background-color: rgba(0, 0, 0, 0.1);
 
-    height: 96px;
-    width: 96px;
+    height: 72px;
+    width: 72px;
 }
 
 .status-card[data-large-image=true] {
@@ -562,6 +562,10 @@ html[data-is-miiverse=true] .media-gallery__item-alt-button {
     padding-top: 56.25%;
 }
 
+.status-card[data-large-image=true] .status-card__title {
+    white-space: wrap;
+}
+
 .status-card__host {
     font-size: 12px;
     line-height: 14px;
@@ -573,7 +577,8 @@ html[data-is-miiverse=true] .media-gallery__item-alt-button {
     font-size: 14px;
     font-weight: bold;
     letter-spacing: -1px;
-    line-height: 16px;
+    line-height: 18px;
+    white-space: nowrap;
 }
 
 .status-card__author {
@@ -585,7 +590,7 @@ html[data-is-miiverse=true] .media-gallery__item-alt-button {
 .status-card__description {
     font-size: 12px;
     line-height: 14px;
-    margin-top: 4px;
+    margin-top: 3px;
     white-space: nowrap;
 }
 
