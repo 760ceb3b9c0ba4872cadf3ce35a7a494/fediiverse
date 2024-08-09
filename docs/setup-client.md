@@ -36,7 +36,7 @@ next you have to go to the folder for the specific region of your device:
 
 mine is from the US so my folder is `1:/title/00040030/0000bd02`.
 
-from there, go to the `/content` folder and select the `.app` file. then, under `NCCH iamge options...`, select `extract .code`.
+from there, go to the `/content` folder and select the `.app` file. then, under `NCCH image options...`, select `extract .code`.
 
 it should say it extracted successfully! make sure it extracted to the sd card (`0:`) and if not there's some option somewhere to change that.
 hold down R while pressing START and your device will shutdown!
@@ -44,31 +44,28 @@ hold down R while pressing START and your device will shutdown!
 next, get the exported file off your device. you can remove the SD card and put it in a computer, or you can boot your device up and use [ftpd](https://github.com/mtheall/ftpd) to transfer it wirelessly.
 on my device it exported to `0:/gm9/out`, which means it'll be in the `/gm9/out` folder on the root of your SD card.
 
-on my device the filename was `000400300000BD02.dec.code` but on yours itll match your region ofc.
-copy that file to your computer. 
-rename this file to `code.bin` and place it in the `/patch` directory in this repo.
+on my device the filename was `000400300000BD02.dec.code`, on yours it'll match your region.
+copy that file to your computer, then rename it to `code.bin` and place it in the `/patch` directory in your local version of this repo.
 
 once you're done with this, leave the SD card in the computer or keep the FTP server going. 
-you won't need to use your device again until later.
+you won't need to boot your device normally again until later.
 
 ## step 3: build the patch
 first you need to install two dependencies: [flips](https://github.com/Alcaro/Flips) and [armips](https://github.com/Kingcom/armips). 
-you might be able to find release builds somewhere, but i just built them myself and it was fine.
+there are apparently release builds somewhere but i built them manually and it was fine. you also need `make`.
 
-you also need `make` so im assuming you have the normal dev environment set up.
-
-put those into your path (or if you're too lazy just copy them in the `/patch` directory).
+put the flips and armips binaries into your path (or if you're too lazy just copy them in the `/patch` directory).
 next, cd into the `/patch` directory and run `make`.
 
 if you did everything right you should see `code.ips` appear in `/patch/out`. yaaaaaay :3 :3 :3 :3 :3
 
 ## step 4: copy the cert & patch
 first, copy the `/cert/ca_cert.pem` file from this repo to `/3ds/fediiverse.pem` on the device.  
-next, copy the `code.ips` to the folder `/luma/titles/00040030________/` where the blank space is the applet ID from earlier.
+next, copy the `code.ips` to the path `/luma/titles/00040030________/` where the blank space is the applet ID from earlier.
 for example, i copied my `code.ips` to `/luma/titles/000400300000BD02/code.ips`. 
-if you installed pretendo earlier the folder and file will already exist; ignore and overwrite that.
+if you installed pretendo earlier, the folder and file will already exist; ignore and overwrite that.
 
-now make sure the sd card is in the device and turn it off.
+now make sure the SD card is back in the device and turn it off.
 
 ## step 5: boot the device with the patch
 turn on the device while holding SELECT. it should come up with a "luma3ds configuration" screen. if it doesnt, shutdown and try again.
