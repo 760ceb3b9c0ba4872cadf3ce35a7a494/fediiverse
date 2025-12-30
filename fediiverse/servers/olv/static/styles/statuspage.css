@@ -1,0 +1,17 @@
+.header {
+    margin-bottom: 0px !important;
+}
+
+.status-list {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.big-button {
+    margin-top: 12px !important;
+    margin-bottom: 12px !important;
+}
+
+.content {
+    margin-bottom: 240px;  /* entire bottom screen */
+}

@@ -1,0 +1,66 @@
+.icon {
+    background-image: url("/static/icons/icon-atlas.png");
+    background-repeat: no-repeat;
+    height: 14px;
+    width: 14px;
+}
+
+.icon[active] {
+    background-position-y: -14px;
+}
+
+.icon[icon=err] {
+    background-position-x: -0px;
+}
+
+.icon[icon=reply] {
+    background-position-x: -14px;
+}
+
+.icon[icon=reblog] {
+    background-position-x: -28px;
+}
+
+.icon[icon=favourite] {
+    background-position-x: -42px;
+}
+
+.icon[icon=bookmark] {
+    background-position-x: -56px;
+}
+
+.icon[icon=eye] {
+    background-position-x: -70px;
+}
+
+.icon[icon=warning] {
+    background-position-x: -84px;
+}
+
+.icon[icon=earth] {
+    background-position-x: -98px;
+}
+
+.icon[icon=draw] {
+    background-position-x: -112px;
+}
+
+.icon[icon=moon] {
+    background-position-x: -126px;
+}
+
+.icon[icon=lock] {
+    background-position-x: -140px;
+}
+
+.icon[icon=at] {
+    background-position-x: -154px;
+}
+
+.icon[icon=ellipsis] {
+    background-position-x: -168px;
+}
+
+.icon[icon=screenshot] {
+    background-position-x: -182px;
+}

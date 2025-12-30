@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="/static/styles/reset.css">
+	<link rel="stylesheet" href="/static/styles/style.css">
+	<link rel="stylesheet" href="/static/styles/renderedText.css">
+	<link rel="stylesheet" href="/static/styles/info-screen.css">
+	<link rel="stylesheet" href="/static/styles/logged-out.css">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+	<script src="/static/scripts/logged-out.js"></script>
+	<script src="/static/scripts/keys.js"></script>
+</head>
+<body>
+	<div class="content">
+		<div class="header">
+			<h1>Logged out</h1>
+		</div>
+		<div class="inner-content">
+			<h1>Welcome to fediiverse!</h1>
+			<p>You aren't logged in. To get started, find a fediiverse instance on another device, follow the instructions provided, and launch the fediiverse Setup Utility once you're ready to scan the QR code.</p>
+			<div style="display: block; -webkit-box-flex: 1;"></div>
+			<button class="button" id="launch" onclick="launch()">
+				<img src="/static/icons/setup-icon.png" width="48" height="48">
+				<span>Launch fediiverse<br>Setup Utility</span>
+			</button>
+		</div>
+	</div>
+</body>
+</html>

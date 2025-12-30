@@ -1,0 +1,41 @@
+/* used for logged-out and first-time */
+
+.header {
+    margin-bottom: 0px;
+}
+.content {
+    margin-bottom: 0px;
+}
+.inner-content {
+    background: white;
+    width: 288px;
+    height: 208px;
+    margin: 16px;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	-webkit-border-radius: 4px;
+
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-box-align: center;
+	-webkit-box-pack: start;
+	padding: 12px;
+    font-size: 13px;
+    line-height: 16px;
+    color: #222;
+}
+
+.inner-content h1 {
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 4px;
+    color: #000;
+}
+
+.inner-content b {
+    color: rgb(26, 185, 0);
+}
+
+.big-button {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}

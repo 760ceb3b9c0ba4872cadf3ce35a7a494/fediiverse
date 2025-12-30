@@ -1,0 +1,155 @@
+body {
+    background: white;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABYCAYAAABxlTA0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADqSURBVHgB7duxDcMwEARB2lDA/stkBcykKjZ4YKaExaX3O+e8a5C995rkv0gJHBM4JnBM4JjAMYFjAscEjgkcEzgmcEzgmMAxgWMCxwSOCRwTOCZwTOCYwDGBYwLHBI4JHBM4JnBM4JjAMYFjAscEjgkcEzgmcEzgmMAxgWMCxwSOCRwTOPZM+/7ee9ckFhwTOCZwTOCYwDGBYwLHBI4JHBM4JnBM4JjAMYFjAscEjgkcEzgmcEzgmMAxgWMCxwSOCRwTOCZwTOCYwDGBYwLHBI4JHBM4JnBM4JjAMYFjAscEjgkcEzgmcOwDs8EHh1lcOR0AAAAASUVORK5CYII=);
+
+    background-position: center top;
+    font-family: -apple-system, Helvetica Neue, Helvetica, Arial, sans-serif;
+    line-height: 1.25;
+}
+
+h1 {
+    font-size: 28px;
+    margin-block: 12px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-top: 24px;
+    margin-bottom: 8px;
+}
+
+p {
+    margin-block: 8px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100vw;
+    margin: 0;
+    padding; 0;
+}
+
+main {
+    max-width: 448px;
+    background: white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 16px;
+    margin-bottom: 33vh;
+    padding: 24px;
+    border-top: 4px solid rgb(49, 185, 27);
+    box-shadow: 0px 0px 12px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 2px;
+}
+
+@media screen and (max-width: 480px) {
+    main {
+        margin-top: 0px;
+        max-width: unset;
+    }
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding-block: 24px;
+    padding-inline: 8px;
+    margin-left: -8px;
+    margin-right: -8px;
+    margin-block: 12px;
+    background: white;
+    border: 1px solid #00000011;
+    box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 2%);
+    gap: 12px;
+    border-radius: 4px;
+}
+
+#server-select-form {
+    align-items: center;
+    text-align: center;
+}
+
+button {
+    appearance: none;
+    border: 1px solid #00000020;
+    background-color: #FFF;
+    background: linear-gradient(to bottom, #FFFFFF, #FDFDFD);
+    border-radius: 6px;
+    font-size: 16px;
+    padding: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+    cursor: pointer;
+
+    box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 2%);
+}
+
+button:disabled {
+    opacity: 66%;
+    box-shadow: none;
+    cursor: default;
+}
+
+button:not(:disabled):active {
+    transform: translateY(2px);
+    box-shadow: none;
+}
+
+label[for=server-host] {
+    font-size: 16px;
+}
+
+input[type=text]#domain-name {
+    border: 1px solid #00000020;
+    appearance: none;
+    font-size: 16px;
+    padding: 8px;
+    box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, 3%);
+    border-radius: 4px;
+    margin-right: 8px;
+}
+
+select#domain-name {
+    background: linear-gradient(to bottom, #FFFFFF, #FDFDFD);
+	border: 1px solid #00000020;
+    appearance: none;
+    font-size: 16px;
+    padding: 8px;
+    padding-left: 12px;
+    border-radius: 4px;
+    margin-right: 8px;
+    box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 2%);
+    color: black;
+
+	/* https://stackoverflow.com/a/67297063 */
+    background: url("data:image/svg+xml,<svg height='12px' width='12px' viewBox='0 0 16 16' fill='%23000000' xmlns='http://www.w3.org/2000/svg'><path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>") no-repeat;
+    background-position: calc(100% - 14px) center;
+    padding-right: calc(12px + 8px + 14px);
+    cursor: pointer;
+}
+
+select:invalid {
+	color: rgba(0, 0, 0, 0.5) !important;
+}
+
+a, .highlight {
+    font-weight: 500;
+    color: rgb(39, 165, 22);
+}
+
+input {
+    font-size: inherit;
+}
+
+hr {
+    border-style: solid;
+    border-color: #0000000E;
+    border-radius: 100px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

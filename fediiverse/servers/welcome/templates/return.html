@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="static/main.css"/>
+	<link rel="stylesheet" href="static/return.css"/>
+</head>
+<body>
+	<main>
+		<h1>Installation steps</h1>
+		<p>
+		Hi <b class="highlight" id="acct"></b>! Here are the steps to connect your 3DS to the Fediverse:
+		</p>
+
+		<h2>1. Prepare your 3DS</h2>
+		<p>
+		First, install Luma3DS <a href="https://3ds.hacks.guide/">custom firmware</a> to your 3DS.
+		</p>
+		<p>
+		Next, make sure the "Enable loading external modules" and "Enable game patching" options are enabled.
+		To enable these options, hold SELECT while starting your 3DS.
+		</p>
+		<img
+			alt="A screenshot depicting the Luma3DS configuration menu with the 'Enable loading external modules' and 'Enable game patching' options highlighted"
+			id="luma-config-guide" src="static/luma-config-guide.png" width="400" height="270"
+		/>
+		<p>
+		Next, <a href="https://pretendo.network/docs/install/3ds">install Pretendo</a> or another Nintendo Network ID server replacement
+		to your 3DS.
+		</p>
+		<p>
+		(Miiverse will not launch unless your device can connect to NNID which Nintendo
+		<a href="https://en-americas-support.nintendo.com/app/answers/detail/a_id/63227/">shut down in April 2024</a>,
+		so unfortunately at this time fediiverse depends on an alternative service being installed.)
+		</p>
+
+		<h2>2. Install the fediiverse Setup Utility</h2>
+		<p>
+		Download the fediiverse Setup Utility .cia file, then install it to your 3DS using FBI.
+		<p>
+		<a id="setup-link" target="_blank" href="https://git.gay/sheepy/fediiverse-setup/releases">
+			<img alt="" width="86" height="86" src="static/fediiverse-setup.png" srcset="static/fediiverse-setup.png, static/fediiverse-setup@2x.png 2x"/>
+			Download fediiverse<br/>Setup Utility
+		</a>
+
+		<h2>3. Scan the QR code</h2>
+		<p>Open the fediiverse Setup Utility on your 3DS and scan this QR code:</p>
+		<img alt="" id="qr" src="..." width="?" height="?" style="image-rendering: pixelated">
+		<p>
+		Information will appear on the bottom screen once the QR code scans properly. Give it a second to configure everything.
+		Make sure the output looks right (it should end in "Please reboot")
+		</p>
+		<p>Reboot your device, and done! Open the Miiverse applet to start exploring fediiverse. You can now close this page.</p>
+		<hr/>
+		If you encounter any problems during this process, check the
+		<a href="https://github.com/760ceb3b9c0ba4872cadf3ce35a7a494/fediiverse">fediiverse GitHub page</a> for help.
+	</main>
+</body>

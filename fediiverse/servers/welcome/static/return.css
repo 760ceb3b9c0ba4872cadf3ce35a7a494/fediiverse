@@ -1,0 +1,43 @@
+#luma-config-guide {
+    display: block;
+    image-rendering: pixelated;
+    margin-bottom: 16px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#setup-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    padding: 16px;
+    gap: 16px;
+    text-decoration: none;
+    border: 1px solid #00000020;
+    background: linear-gradient(to bottom, #FFFFFF, #FDFDFD);
+    background-color: #FFF;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 2%);
+}
+
+#setup-link > img {
+    margin: -8px;
+}
+
+#qr {
+    display: block;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 4px;
+    box-sizing: content-box;
+    border: 1px solid #00000020;
+    background: linear-gradient(to bottom, #FFFFFF, #FDFDFD);
+}

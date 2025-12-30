@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--suppress XmlDuplicatedId, XmlDuplicatedId -->
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="static/main.css"/>
+</head>
+<body>
+    <main>
+    <h1 id="welcome">Welcome to fediiverse!</h1>
+    <p>
+    	fediiverse lets you connect to Mastodon and the Fediverse from your <b class="highlight">Nintendo 3DS system</b>!
+    </p>
+    <p id="intro-html">[INTRO HTML GOES HERE]</p>
+    <hr>
+    <p>
+    	<b class="highlight" id="host">?</b> is a fediiverse server running version <span id="version">?</span>.
+    	<a href="https://github.com/760ceb3b9c0ba4872cadf3ce35a7a494/fediiverse">Learn more about fediiverse</a>
+    </p>
+
+    <h2 id="get-started">Get started</h2>
+    <form id="server-select-form" method="POST" action="select-instance">
+        <label for="domain-name">Enter the <b class="highlight">domain name</b> of your Fediverse instance:</label>
+        <div>
+            <input type="text" required minlength=1 pattern="[a-zA-Z0-9\.\-]*" id="domain-name" name="domain_name" placeholder="?" />
+            <select id="domain-name" name="domain_name" required>
+  				<option value="" disabled selected hidden>Select an instance</option>
+            </select>
+
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+
+    <h2 id="how-it-works">How it works</h2>
+    <p>fediiverse turns the Miiverse applet on your Nintendo 3DS into a window to the Fediverse.</p>
+    <img src="static/applet-banner.png" style="image-rendering: pixelated;" width="400" height="256" />
+    <hr/>
+    <p>
+    fediiverse stands between your console and the Fediverse.
+    Your 3DS talks to your fediiverse instance, and your fediiverse instance talks to your Mastodon or Mastodon-compatible instance.
+    </p>
+    <img src="static/comms-banner.svg" alt="a graphic of a 3DS talking to a fediiverse instance which is talking to a Mastodon instance." width=400 height=80 />
+    <hr/>
+    <a href="https://github.com/760ceb3b9c0ba4872cadf3ce35a7a494/fediiverse">fediiverse is open source!</a>
+    </main>
+</body>

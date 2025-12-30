@@ -1,0 +1,89 @@
+.new-header {
+	margin-bottom: 0px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-box-align: center;
+	-webkit-box-pack: end;
+	min-height: 220px;
+	height: auto;
+	border-bottom: none;
+	padding-top: 16px;
+}
+
+.reply-to {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-box-align: center;
+	-webkit-box-pack: end;
+	width: 322px;
+	padding-bottom: 16px;
+}
+
+.content {
+	margin-bottom: 0px;
+}
+
+.new {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+
+	width: 320px;
+	height: 212px;
+	margin-bottom: 28px;  /* 212+28 = 240, bottom screen height. */
+	padding: 8px;
+}
+
+
+.new__textarea {
+	display: -webkit-box;
+	-webkit-box-align: center;
+	-webkit-box-direction: normal;
+	-webkit-box-lines: single;
+	-webkit-box-orient: horizontal;
+	-webkit-box-pack: start;
+	-webkit-box-flex: 1;
+	width: 100%;
+	padding: 8px;
+	resize: none;
+
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	-webkit-border-radius: 4px;
+}
+
+.new__buttons {
+  width: 100%;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-direction: normal;
+  -webkit-box-lines: single;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: start;
+  margin-top: 4px;
+}
+
+#new__post-button {
+	padding-left: 12px;
+	padding-right: 12px;
+}
+
+
+#sap-icon-bubble {
+	background-image: url(/static/icons/icon-atlas.png);
+	width: 37px;
+	height: 30px;
+	position: relative;
+	margin-left: -2px;
+	margin-top: -2px;
+	margin-bottom: -2px;
+	background-position-y: -28px;
+}
+
+#sap-icon {
+	display: block;
+	height: 24px;
+	width: 24px;
+	position: absolute;
+	right: 3px;
+	top: 3px;
+	z-index: -5;
+}

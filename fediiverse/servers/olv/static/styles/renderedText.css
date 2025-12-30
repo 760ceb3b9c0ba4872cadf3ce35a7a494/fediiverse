@@ -1,0 +1,74 @@
+.rendered-text {
+    width: 100%;
+    overflow-x: hidden;
+    white-space: wrap;
+    font-size: 13px;
+    line-height: 17px;
+}
+
+.rendered-text h1,
+.rendered-text h2,
+.rendered-text h3,
+.rendered-text h4,
+.rendered-text h5,
+.rendered-text h6 {
+    margin-bottom: 8px;
+}
+
+.rendered-text h1 {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.rendered-text h2 {
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.rendered-text h3 {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.rendered-text h4 {
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.rendered-text h5 {
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.rendered-text h6 {
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.rendered-text p {
+  margin-bottom: 6px;
+}
+
+.rendered-text > p:last-child {
+    margin-bottom: 0;
+}
+
+.rendered-text blockquote {
+    padding-left: 6px;
+    color: rgba(0, 0, 0, 0.8);
+    border-left: 2px solid currentColor;
+    margin-bottom: 6px;
+}
+
+.rendered-text em,
+.rendered-text i {
+    font-style: italic;
+}
+
+.rendered-text strong {
+    font-weight: bold;
+}
+
+.rendered-text u {
+    text-decoration: underline;
+}

@@ -1,0 +1,114 @@
+.header {
+    margin-bottom: 0px !important;
+}
+
+.content {
+	margin-bottom: 0px !important;
+}
+
+.settings-container {
+    display: -webkit-box:
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    width: 320px;
+    padding: 16px;
+    margin-bottom: 30px;
+	overflow: hidden;
+}
+
+.settings {
+    /* border-spacing: 8px 0px; */
+    background: white;
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	width: 288px;
+	-webkit-border-radius: 4px;
+    display: -webkit-box:
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: start;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.settings .row {
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-direction: normal;
+    -webkit-box-lines: single;
+    -webkit-box-orient: horizontal;
+    -webkit-box-pack: justify;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    overflow: hidden;
+    min-height: 42px;
+}
+
+.row > .left {
+    display: -webkit-inline-box;
+    -moz-box-flex: 1;
+    overflow: hidden;
+    padding-right: 12px;
+}
+
+.row label {
+    white-space: wrap;
+    word-wrap: break-word;
+    max-width: 224px;
+    display: -webkit-inline-box;
+    overflow: hidden;
+}
+
+.row > .right {
+    display: -webkit-inline-box;
+    -moz-box-flex: 1;
+    overflow: hidden;
+}
+
+.settings .row:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.settings .row > * {
+    display: -webkit-box;
+}
+
+/*
+.settings .row > * {
+    display: -webkit-inline-box;
+}
+*/
+
+.settings input[type=checkbox] {
+}
+
+.settings label {
+    font-size: 13px;
+    line-height: 16px;
+}
+
+.settings input {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.settings-fields {
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -webkit-box-orient: vertical;
+    font-size: 12px;
+    line-height: 16px;
+    color: rgba(0, 0, 0, 0.5);
+    margin-top: 16px;
+    text-align: center;
+}
+
+#settings-fields__version {
+    font-size: 13px;
+}
+
+.settings-fields > * {
+    display: block;
+    margin-bottom: 3px;
+}

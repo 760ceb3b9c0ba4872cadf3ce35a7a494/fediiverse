@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<result>
+  <has_error>0</has_error>
+  <version>1</version>
+  <endpoint>
+    <host>${discovery_host}</host>
+    <api_host>${olv_host}</api_host>  <!-- API - not implemented -->
+    <portal_host>example.invalid</portal_host>  <!-- Wii U - not implemented -->
+    <n3ds_host>${olv_host}</n3ds_host>
+  </endpoint>
+</result>

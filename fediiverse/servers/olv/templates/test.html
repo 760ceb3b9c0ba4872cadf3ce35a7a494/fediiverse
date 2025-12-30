@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="/static/styles/reset.css">
+	<link rel="stylesheet" href="/static/styles/style.css">
+	<link rel="stylesheet" href="/static/styles/renderedText.css">
+	<link rel="stylesheet" href="/static/styles/test.css">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+	<script src="/static/scripts/test.js"></script>
+	<script src="/static/scripts/select.js"></script>
+	<script src="/static/scripts/toolbar.js"></script>
+	<script src="/static/scripts/context-navigation.js"></script>
+	<script src="/static/scripts/keys.js"></script>
+</head>
+<body>
+	<div class="content">
+		<div class="header">
+			<h1>Test menu</h1>
+		</div>
+		<div class="inner-content">
+			<button onclick="location.reload();">Hard reload</button>
+			<button onclick="cave.requestGc();">Request GC</button>
+			<br/>
+			<button onclick="navigate('/logged-out')">Go to logged-out</button>
+			<button onclick="navigate(makeURL('/first-time'))">Go to first-time</button>
+
+			<table id="capture">
+				<caption>Capture</caption>
+			</table>
+			<table id="sap">
+				<caption>Suspended application</caption>
+			</table>
+			<table id="ls">
+				<caption>ls (Session storage)</caption>
+				<tr><th>#</th><th>Key</th><th>Value</th></tr>
+			</table>
+			<table id="lls">
+				<caption>lls (Local storage)</caption>
+				<tr><th>#</th><th>Key</th><th>Value</th></tr>
+			</table>
+			<table id="sfx">
+				<caption>Sound effects</caption>
+				<tr><th>Name</th><th>Play</th></tr>
+			</table>
+			<table id="bgm">
+				<caption>Background music</caption>
+				<tr><th>Name</th><th>Play</th></tr>
+			</table>
+			<button onclick="cave.snd_stopBgm(0)">Stop BGM</button>
+			<table id="mii">
+				<caption>Mii</caption>
+			</table>
+			<table id="history">
+				<caption>History</caption>
+				<tr><th>#</th><th>URL</th></tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

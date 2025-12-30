@@ -1,0 +1,62 @@
+table {
+    background: white;
+    font-size: 13px;
+    line-height: 16px;
+    border: 1px ridge #AAA;
+}
+
+th {
+    font-weight: bold;
+    padding: 6px;
+    border: 1px ridge #AAA;
+}
+
+td {
+    border: 2px ridge;
+    padding: 6px;
+}
+
+
+.content {
+    margin-bottom: 240px;  /* entire bottom screen */
+}
+
+.inner-content {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    width: 320px;
+    padding: 16px;
+    padding-top: 0px;
+	overflow: hidden;
+}
+
+i {
+    font-style: italic;
+}
+
+table {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+caption {
+    margin-bottom: 4px;
+}
+
+td {
+    vertical-align: middle;
+}
+
+td img {
+    display: block;
+    margin: 0px;
+}
+
+.mood-row td:nth-child(2) {
+    padding: 0px;
+}
+
+#capture img {
+	max-width: 100%;
+}

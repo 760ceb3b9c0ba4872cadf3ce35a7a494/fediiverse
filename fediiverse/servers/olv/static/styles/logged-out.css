@@ -1,0 +1,23 @@
+.button#launch {
+	text-align: left;
+	vertical-align: middle;
+	overflow: hidden;
+	padding: 6px;
+}
+
+.button#launch img {
+	vertical-align: middle;
+    display: -webkit-inline-box;
+    margin-right: 6px;
+    height: 48px;
+    width: 48px;
+}
+
+.button#launch span {
+    display: -webkit-inline-box;
+    font-size: 14px;
+    line-height: 16px;
+    vertical-align: middle;
+    margin-top: -2px;
+    margin-right: 4px;
+}

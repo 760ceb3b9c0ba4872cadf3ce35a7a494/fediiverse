@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="/static/styles/reset.css">
+	<link rel="stylesheet" href="/static/styles/icons.css">
+	<link rel="stylesheet" href="/static/styles/style.css">
+	<link rel="stylesheet" href="/static/styles/settings.css">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+	<script src="/static/scripts/external/promise.min.js"></script>
+	<script src="/static/scripts/external/fetch.min.js"></script>
+	<script src="/static/scripts/gfetch.js"></script>
+	<script src="/static/scripts/select.js"></script>
+	<script src="/static/scripts/toolbar.js"></script>
+	<script src="/static/scripts/settings.js"></script>
+	<script src="/static/scripts/normal-page.js"></script>
+	<script src="/static/scripts/live-timestamp.js"></script>
+	<script src="/static/scripts/context-navigation.js"></script>
+	<script src="/static/scripts/keys.js" onload="initKeys();"></script>
+</head>
+<body>
+	<div class="content">
+		<div class="header">
+			<h1>Settings</h1>
+		</div>
+
+		<div class="settings-container">
+			<div class="settings">
+				<div class="row">
+					<div class="left">
+						<label for="bgm">Background music</label>
+					</div>
+					<div class="right">
+						<select id="bgm" onchange="updateBgm(this)">
+							<option value="BGM_CAVE_SETTING">Track 1</option>
+							<option value="BGM_CAVE_SYOKAI">Track 2</option>
+							<!--<option value="BGM_CAVE_MAIN_OFFLINE">Track 3</option>-->
+							<option value="BGM_CAVE_MAIN">Track 3</option>
+							<!--<option value="BGM_CAVE_WORLD_MAP_MINT">Track 4</option>-->
+							<option value="<none>">No music</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="left">
+						<label for="show-hints">Show hints</label>
+					</div>
+					<div class="right">
+						<input type="checkbox" id="show-hints" onchange="updateShowHints(this)" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="left">
+						<label for="reset-hints">Show all hints again:</label>
+					</div>
+					<div class="right">
+						<button id="reset-hints" onclick="triggerResetHints(this)" class="button">Reset hints</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="left">
+						<label for="ask-boost-visibility">Always ask for post visibility before boosting</label>
+					</div>
+					<div class="right">
+						<input type="checkbox" id="ask-boost-visibility" onchange="updateAskBoostVisibility(this)" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="left">
+						<label for="home-safety">Disable &#xE073; HOME button while a post is being composed</label>
+					</div>
+					<div class="right">
+						<input type="checkbox" id="home-safety" onchange="updateHomeSafety(this)" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="left">
+						<label for="animate-checkerboard">Enable animated background in the New Post menu</label>
+					</div>
+					<div class="right">
+						<input type="checkbox" id="animate-checkerboard" onchange="updateAnimateCheckerboard(this)" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="left">
+						<label for="always-allow-capture">Allow attaching screenshots to posts even when no software is suspended</label>
+					</div>
+					<div class="right">
+						<input type="checkbox" id="always-allow-capture" onchange="updateAlwaysAllowCapture(this)" />
+					</div>
+				</div>
+				<!--
+				<div class="row">
+					<div class="left">
+						<label for="show-view-status-id">Show "View status ID" option in post context menu</label>
+					</div>
+					<div class="right">
+						<input type="checkbox" id="show-view-status-id" onchange="updateShowViewStatusId(this)" />
+					</div>
+				</div>
+				-->
+				<div class="row">
+					<div class="left">
+						<label for="reload-bind">Reload the page with:</label>
+					</div>
+					<div class="right">
+						<select id="reload-bind" onchange="updateReloadBind(this)">
+							<option value="L+R">&#xE004; + &#xE005;</option>
+							<option value="ZL+ZR">&#xE054; + &#xE055;</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<div class="settings">
+				<div class="row user-row">
+
+				</div>
+				<div class="row">
+					<div class="left">
+						<label for="logout">Log out of fediiverse:</label>
+					</div>
+					<div class="right">
+						<button id="logout" onclick="triggerLogout(this)" class="button">Log out</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="settings-fields">
+				<span id="settings-fields__version">fediiverse v?.?.?</span>
+				<span id="settings-fields__instances">A via B</span>
+				<span id="settings-fields__session">Logged in at time</span>
+				<span id="settings-fields__dev">&#xE010; Dev mode, caching disabled!</span>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
