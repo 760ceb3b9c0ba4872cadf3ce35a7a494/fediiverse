@@ -1,6 +1,9 @@
 # How to set up a fediiverse instance
 This guide is intended for those with some server administration knowledge.
 
+## Docker
+As an alternative to setting fediiverse up manually, [KiyoNetcat](https://kiyo.ncat.cafe/) has created a [Docker configuration for fediiverse](https://git.craftingcomrades.net/KiyoNetcat/docker-fediiverse) which you may use instead of following these instructions!
+
 ## Prerequisites
 You need:
 - A domain name that you can create subdomains on.
