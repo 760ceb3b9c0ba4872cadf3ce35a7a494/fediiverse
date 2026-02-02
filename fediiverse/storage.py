@@ -48,6 +48,7 @@ class FediiverseConfigHosts(BaseModel):
 	olv_host: str
 	img_host: str
 	setup_host: str
+	setup_port: int = 80
 
 
 class FediiverseConfigSecrets(BaseModel):

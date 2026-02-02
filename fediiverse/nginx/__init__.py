@@ -35,7 +35,8 @@ def build_configuration(log: bool = False):
 		"discovery_host": config.hosts.discovery_host,
 		"olv_host": config.hosts.olv_host,
 		"img_host": config.hosts.img_host,
-		"setup_host": config.hosts.setup_host
+		"setup_host": config.hosts.setup_host,
+		"setup_port": config.hosts.setup_port,
 	}
 
 	for source_path in template_dir.glob("*"):
