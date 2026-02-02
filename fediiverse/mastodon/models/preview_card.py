@@ -16,13 +16,13 @@ class PreviewCard(BaseModel):
 	title: str
 	description: str
 	type: PreviewCardType
-	author_name: str
+	author_name: Optional[str] = None
 	author_url: Optional[str] = None
 	provider_name: str
 	provider_url: Optional[str] = None
-	html: str
-	width: int
-	height: int
+	html: Optional[str] = None
+	width: int = 0
+	height: int = 0
 	image: Optional[str] = None
 	embed_url: Optional[str] = None
 	blurhash: Optional[str] = None
