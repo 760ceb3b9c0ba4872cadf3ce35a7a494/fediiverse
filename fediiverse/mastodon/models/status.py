@@ -67,4 +67,4 @@ class Status(BaseModel):
     muted: Optional[bool] = None
     bookmarked: Optional[bool] = None
     pinned: Optional[bool] = None
-    filtered: list[FilterResult]
+    filtered: list[FilterResult] = []

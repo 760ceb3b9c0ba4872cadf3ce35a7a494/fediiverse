@@ -10,7 +10,7 @@ from .custom_emoji import CustomEmoji
 class AccountField(BaseModel):
     name: str
     value: str
-    verified_at: Optional[datetime]
+    verified_at: Optional[datetime] = None
 
 
 class Account(BaseModel):
@@ -28,7 +28,7 @@ class Account(BaseModel):
     fields: list[AccountField]
     emojis: list[CustomEmoji]
     bot: bool
-    group: bool
+    group: Optional[bool] = None
     discoverable: Optional[bool] = None
     noindex: Optional[bool] = None
     moved: Optional[Account] = None
