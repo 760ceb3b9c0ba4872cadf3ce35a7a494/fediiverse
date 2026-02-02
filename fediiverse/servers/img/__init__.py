@@ -208,7 +208,7 @@ async def cache_proxy(t: str):
 		"Cache-Control": f"max-age={delta.total_seconds()}",  # 30 days
 		"Expires": http_date(datetime.datetime.now(datetime.timezone.utc) + delta)
 	}
-	for key, value in headers.items():
+	for key, value in list(headers.items()):
 		if value is None:
 			del headers[key]
 
