@@ -473,11 +473,18 @@ def render_status(
 					"class": "media-gallery__item",
 					"colspan": "2" if alone_in_row else "1"
 				})
-
-				aspect_ratio = attachment.meta["small"]["aspect"]
+				
 				min_height = 72
-				ideal_height = (306 if alone_in_row else 151) * (1 / aspect_ratio)
 				max_height = 230
+				if (
+					attachment.meta
+					and "small" in attachment.meta
+					and "aspect" in attachment.meta["small"]
+				):
+					aspect_ratio = attachment.meta["small"]["aspect"]
+					ideal_height = (306 if alone_in_row else 151) * (1 / aspect_ratio)
+				else:
+					ideal_height = 151
 
 				preview_img_url = get_proxied_url(attachment.preview_url, max_width=306, max_height=max_height)
 				full_size_img_url = get_proxied_url(attachment.url, max_width=400, max_height=1024)
