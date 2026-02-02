@@ -1,9 +1,9 @@
 from typing import Optional, Literal
 
+from fediiverse.utils import filter_nulls_from_dict
 from ._base import BaseProvider
 from ..models.context import Context
 from ..models.status import Status, StatusVisibility
-
 
 class StatusesProvider(BaseProvider):
 	async def post(
@@ -19,18 +19,20 @@ class StatusesProvider(BaseProvider):
 			language: Optional[str] = None,
 			# scheduled_at
 	):
+		request = {
+			"status": status,
+			"media_ids": media_ids,
+			"in_reply_to_id": in_reply_to_id,
+			"sensitive": sensitive,
+			"spoiler_text": spoiler_text,
+			"visibility": visibility.value,
+			"language": language
+		}
+		request = filter_nulls_from_dict(request)
 		response = await self._session.request(
 			method="POST",
 			url=self._base_url / "v1" / "statuses",
-			json={
-				"status": status,
-				"media_ids": media_ids,
-				"in_reply_to_id": in_reply_to_id,
-				"sensitive": sensitive,
-				"spoiler_text": spoiler_text,
-				"visibility": visibility.value,
-				"language": language
-			}
+			json=request
 		)
 		response.raise_for_status()
 		return Status(**(await response.json()))

@@ -15,7 +15,8 @@ from fastapi.responses import PlainTextResponse
 from pydantic import BaseModel, HttpUrl
 from yarl import URL
 
-from ...storage import get_config, FediiverseMode
+from fediiverse.utils import filter_nulls_from_dict
+from ...storage import FediiverseMode, get_config
 
 config = get_config()
 hosts = config.hosts
@@ -208,9 +209,7 @@ async def cache_proxy(t: str):
 		"Cache-Control": f"max-age={delta.total_seconds()}",  # 30 days
 		"Expires": http_date(datetime.datetime.now(datetime.timezone.utc) + delta)
 	}
-	for key, value in list(headers.items()):
-		if value is None:
-			del headers[key]
+	headers = filter_nulls_from_dict(headers)
 
 	return Response(
 		status_code=200,
