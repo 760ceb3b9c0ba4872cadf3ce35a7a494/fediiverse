@@ -147,6 +147,7 @@ async def main():
 		olv_host = f"olv.{main_host}"
 		img_host = f"img.{main_host}"
 		setup_host = f"setup.{main_host}"
+        setup_port = 80
 
 		questionary.print("OK, the following domain names will be used:", style="bold")
 		questionary.print(f"- {main_host}")
@@ -189,6 +190,7 @@ async def main():
 			olv_host=olv_host,
 			img_host=img_host,
 			setup_host=setup_host
+            setup_port=setup_port
 		),
 		secrets=FediiverseConfigSecrets(
 			session_token_secret_key=Fernet.generate_key().decode("ascii"),
