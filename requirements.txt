@@ -14,3 +14,4 @@ aiosqlite~=0.21.0
 qrcode~=8.2
 validators~=0.35.0
 questionary~=2.1.0
+python-multipart==0.0.21
