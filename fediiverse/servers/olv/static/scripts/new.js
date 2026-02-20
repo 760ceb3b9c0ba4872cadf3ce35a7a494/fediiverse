@@ -143,12 +143,14 @@ function addScreenshotToForm() {
 	var formEl = document.querySelector("form");
 
 	try {
-		function addElForLlsKey(llsKey) {
+		function addElForLlsKey(screen, llsKey) {
 			var inputEl = document.createElement("input");
 			inputEl.setAttribute("name", llsKey);
 			inputEl.setAttribute("class", "screenshot-form-field");
 			inputEl.setAttribute("type", "file");
 			inputEl.setAttribute("lls", llsKey);
+			inputEl.setAttribute("screen", screen);
+			inputEl.disabled = false;
 			formEl.appendChild(inputEl);
 			// yes its an insane hack and its NINTENDO THAT DID THIS NOT ME
 			inputEl.focus();
@@ -156,13 +158,29 @@ function addScreenshotToForm() {
 			inputEl.blur();
 			inputEl.style.display = "none";
 		};
-		addElForLlsKey("capture_bottom");
-		addElForLlsKey("capture_top");
-		// addElForLlsKey("capture_top_left_eye");
-		// addElForLlsKey("capture_top_right_eye");
+		addElForLlsKey("top", "capture_top");
+		addElForLlsKey("bottom", "capture_bottom");
 	} catch (e) {
 		alert(e);
 	}
+}
+
+function getEnabledScreenshotScreens() {
+	if (!hasCurrentScreenshot()) return {"top": false, "bottom": false};
+
+	return {
+		"top": !document.querySelector(".screenshot-form-field[screen=top]").disabled,
+		"bottom": !document.querySelector(".screenshot-form-field[screen=bottom]").disabled,
+	}
+}
+
+function setEnabledScreenshotScreens(obj) {
+	if (!hasCurrentScreenshot()) {
+		alert("Error: no current screenshot");
+		return;
+	};
+	document.querySelector(".screenshot-form-field[screen=top]").disabled = obj["top"] ? false : true;
+	document.querySelector(".screenshot-form-field[screen=bottom]").disabled = obj["bottom"] ? false : true;
 }
 
 function removeScreenshotFromForm() {
@@ -171,10 +189,13 @@ function removeScreenshotFromForm() {
 	});
 }
 
-function doAddScreenshotPrompt() {
+function showScreenshotPreviewTop(topScreen, bottomScreen) {
 	cave.transition_beginWithoutEffect();
 
+	var height = (topScreen && bottomScreen) ? 105 : 180
+
 	var top = document.createElement("div");
+	top.setAttribute("id", "preview-top");
 	top.style.display = "-webkit-box";
 	top.style.position = "absolute";
 	top.style.left = "0px";
@@ -188,32 +209,49 @@ function doAddScreenshotPrompt() {
 	top.style["-webkit-box-align"] = "center";
 	top.style["-webkit-box-pack"] = "center";
 
-	sleep(70)
-	.then(function() {
-		return new Promise(function(resolve) {
-			var img1 = document.createElement("img");
-			img1.setAttribute("src", cave.lls_getPath("capture_top"));
-			img1.style.background = "#EEE";
-			img1.style.display = "block";
-			img1.style.height = "105px";
-			img1.addEventListener("load", function() {resolve(top)})
-			top.appendChild(img1);
+	return (
+		sleep(70)
+		.then(function() {
+			return new Promise(function(resolve) {
+				if (topScreen) {
+					var img1 = document.createElement("img");
+					img1.setAttribute("src", cave.lls_getPath("capture_top"));
+					img1.style.background = "#EEE";
+					img1.style.display = "block";
+					img1.style.height = height + "px";
+					img1.addEventListener("load", function() {resolve(top)})
+					top.appendChild(img1);
+				};
 
-			var img2 = document.createElement("img");
-			img2.setAttribute("src", cave.lls_getPath("capture_bottom"));
-			img2.style.background = "#EEE";
-			img2.style.display = "block";
-			img2.style.height = "105px";
-			img2.addEventListener("load", function() {resolve(top)})
-			top.appendChild(img2);
+				if (bottomScreen) {
+					var img2 = document.createElement("img");
+					img2.setAttribute("src", cave.lls_getPath("capture_bottom"));
+					img2.style.background = "#EEE";
+					img2.style.display = "block";
+					img2.style.height = height + "px";
+					img2.addEventListener("load", function() {resolve(top)})
+					top.appendChild(img2);
+				};
+			})
 		})
-	})
-	.then(function() {
-		var y = cave.brw_getScrollTopY();
-		top.style.top = y - 20 + "px";
-		document.body.appendChild(top);
-	})
-	.then(function() { return sleep(50); })
+		.then(function() {
+			var y = cave.brw_getScrollTopY();
+			top.style.top = y - 20 + "px";
+			document.body.appendChild(top);
+		})
+		.then(function() { return sleep(50); })
+	)
+}
+
+function hideScreenshotPreviewTop() {
+	cave.transition_endWithoutEffect();
+	var top = document.querySelector("#preview-top");
+	top.parentElement.removeChild(top);
+	document.querySelector("#new__screenshot-button").focus();
+}
+
+function doAddScreenshotPrompt() {
+	showScreenshotPreviewTop(true, true)
 	.then(function() {
 		var text = (
 			cave.sap_exists()
@@ -234,27 +272,42 @@ function doAddScreenshotPrompt() {
 			updateScreenshotButton();
 		}
 	})
-	["finally"](function() {
-		cave.transition_endWithoutEffect();
-		document.body.removeChild(top);
-		document.querySelector("#new__screenshot-button").focus();
-	});
+	["finally"](hideScreenshotPreviewTop);
 }
 
 function onScreenshotButtonClicked() {
 	if (!hasCurrentScreenshot()) {
 		doAddScreenshotPrompt();
-	} else {
-		if (cave.dialog_twoButton(
-			"",
-			"Remove this screenshot?",
-			"\uE001 Cancel",
-			"\uE000 Remove"
-		)) {
+		return;
+	}
+
+	// remove or change screenshot
+
+	var enabledScreens = getEnabledScreenshotScreens();
+	showScreenshotPreviewTop(enabledScreens["top"], enabledScreens["bottom"])
+	.then(function() {
+		return promptSelect(
+			[
+				["remove", "Remove screenshot"],
+				["both", "Select both screens", !(enabledScreens["top"] && enabledScreens["bottom"])],
+				["top", "Select top screen", !(enabledScreens["top"] && !enabledScreens["bottom"])],
+				["bottom", "Select bottom screen", !(enabledScreens["bottom"] && !enabledScreens["top"])],
+			],
+			"remove"
+		)
+	}).then(function(result) {
+		if (result == "remove") {
 			removeScreenshotFromForm();
 			updateScreenshotButton();
+		} else if (result == "both") {
+			setEnabledScreenshotScreens({"top": true, "bottom": true});
+		} else if (result == "top") {
+			setEnabledScreenshotScreens({"top": true, "bottom": false});
+		} else if (result == "bottom") {
+			setEnabledScreenshotScreens({"top": false, "bottom": true});
 		}
-	}
+	})
+	["finally"](hideScreenshotPreviewTop);
 }
 
 function initCapture() {

@@ -60,6 +60,9 @@ function promptSelect(choices, currentChoice) {
                     optionEl.setAttribute("value", choice[0]);
                     optionEl.innerText = choice[1];
                     choiceValues[totalIndex] = choice[0];
+                    if (typeof choice[2] == "boolean") {
+                    	optionEl.disabled = !choice[2];
+                    }
                     if (choice[0] == currentChoice) optionEl.selected = "selected";
                     parentEl.appendChild(optionEl);
                     totalIndex++;

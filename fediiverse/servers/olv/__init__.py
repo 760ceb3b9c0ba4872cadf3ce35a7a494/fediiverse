@@ -471,6 +471,14 @@ def stitch_screenshot(
 	return out
 
 
+def reencode_jpeg_as_png(jpeg_bytes: bytes):
+	image = Image.open(io.BytesIO(jpeg_bytes), formats=["jpeg"])
+	out = io.BytesIO()
+	image.save(out, "png")
+	out.seek(0)
+	return out
+
+
 @app.post("/new", response_class=RedirectResponse)
 async def post_new(
 	*,
@@ -487,10 +495,9 @@ async def post_new(
 
 	mastodon: Annotated[Client, Depends(mastodon_dep)]
 ):
-	has_screenshot = (
-		capture_bottom and capture_top and
-		capture_bottom.size and capture_top.size
-	)
+	has_top_screenshot = capture_top and capture_top.size
+	has_bottom_screenshot = capture_bottom and capture_bottom.size
+	has_screenshot = has_top_screenshot or has_bottom_screenshot
 	has_content = (
 		sketch_bmp_b64 or content or has_screenshot
 	)
@@ -498,22 +505,33 @@ async def post_new(
 		raise HTTPException(status_code=400, detail="No content provided")
 
 	if has_screenshot:
-		d_capture_bottom = await capture_bottom.read()
-		d_capture_top = await capture_top.read()
+		capture_bottom_jpeg_bytes = await capture_bottom.read() if has_bottom_screenshot else None
+		capture_top_jpeg_bytes = await capture_top.read() if has_top_screenshot else None
 
-		screenshot_png = await run_as_async(lambda: stitch_screenshot(
-			capture_bottom=d_capture_bottom,
-			capture_top=d_capture_top
-		))
+		# if we have both top and bottom, stitch them as one PNG
+		if has_bottom_screenshot and has_top_screenshot:
+			screenshot_file_bytes = await run_as_async(lambda: stitch_screenshot(
+				capture_bottom=capture_bottom_jpeg_bytes,
+				capture_top=capture_top_jpeg_bytes
+			))
+			screenshot_file_name = "fediiverse-screenshot.png"
+			screenshot_file_content_type = "image/png"
+		else:
+			# JPEG images get crushed by the server so i'm going to reencode them as PNG
+			screenshot_file_bytes = reencode_jpeg_as_png(capture_top_jpeg_bytes or capture_bottom_jpeg_bytes)
+			screenshot_file_name = "fediiverse-screenshot.png"
+			screenshot_file_content_type = "image/png"
 	else:
-		screenshot_png = None
+		screenshot_file_bytes = None
+		screenshot_file_name = None
+		screenshot_file_content_type = None
 
 	media_ids = []
-	if screenshot_png:
+	if screenshot_file_bytes:
 		attachment_upload = await mastodon.media.upload(
-			file=screenshot_png,
-			file_name="screenshot.png",
-			file_content_type="image/png"
+			file=screenshot_file_bytes,
+			file_name=screenshot_file_name,
+			file_content_type=screenshot_file_content_type
 		)
 		media_ids.append(attachment_upload.id)
 
