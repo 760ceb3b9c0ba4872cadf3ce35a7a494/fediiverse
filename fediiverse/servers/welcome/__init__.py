@@ -75,7 +75,10 @@ async def validate_instance_domain(host: str) -> bool:
 	try:
 		async with Client(f"https://{host}") as mastodon:
 			instance = await mastodon.instance.get_instance_v1()
-			if instance.uri != host:
+			# fix for "void.lgbt" returning "https://void.lgbt" as its instance URI
+			uri = instance.uri.removeprefix("https://")
+			uri = uri.replace("/", "")
+			if host != uri:
 				return False
 	except aiohttp.ClientError as exception:
 		traceback.print_exception(exception)
