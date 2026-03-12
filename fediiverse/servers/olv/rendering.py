@@ -791,7 +791,7 @@ async def render_profile(
 	soup = await load_template("profile.html", user_id=user_id, is_miiverse=is_miiverse)
 
 	older_post_indicator_el = soup.select_one(".older-post-indicator")
-	if max_id is not None:
+	if max_id is not None and max_id.isnumeric():
 		snowflake = int(max_id, 10)
 		snowflake_timestamp = datetime.datetime.fromtimestamp(
 			((snowflake >> (8 * 2)) & (pow(2, (8 * 6)) - 1)) / 1000,

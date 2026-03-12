@@ -185,7 +185,7 @@ async def cache_proxy(t: str):
 		content_type = response.headers["Content-Type"]
 		etag = response.headers.get("ETag")
 		age = response.headers.get("Age")
-		last_modified = response.headers["Last-Modified"]
+		last_modified = response.headers.get("Last-Modified")
 		source_buffer = io.BytesIO(await response.content.read())
 
 	# noinspection PyTypeChecker
