@@ -1,7 +1,7 @@
 from __future__ import annotations
-from typing import Optional
+from typing import Optional, Any
 
-from pydantic import BaseModel, HttpUrl
+from pydantic import BaseModel, HttpUrl, field_validator
 from datetime import datetime
 from enum import Enum
 
@@ -68,3 +68,11 @@ class Status(BaseModel):
     bookmarked: Optional[bool] = None
     pinned: Optional[bool] = None
     filtered: list[FilterResult] = []
+
+    @field_validator("emojis", mode="before")
+    @classmethod
+    def remove_null_emojis(cls, data: Any) -> Any:
+        # Fix for GoToSocial emoji objects with empty url values
+        if isinstance(data, list):
+            return [emoji_data for emoji_data in data if emoji_data["url"]]
+        raise ValueError
