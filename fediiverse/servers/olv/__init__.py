@@ -816,21 +816,20 @@ async def timeline_route(
 	html_el = soup.find("html")
 	html_el["data-timeline-kind"] = kind
 
-	new_max_id = timeline[len(timeline) - 1].id
-	# instance = await mastodon.instance.get_instance()
+	load_older_el = soup.select_one("#load-older-button")
+	if potentially_has_more:
+		new_max_id = timeline[len(timeline) - 1].id
+		if kind == "trending":
+			# trending pages are offset by numeric index and not paginated by max id
+			load_older_url = f"/timeline?kind={kind}&offset={(offset or 0) + limit}"
+		else:
+			load_older_url = f"/timeline?kind={kind}&max_id={new_max_id}"
+		load_older_el.attrs["href"] = load_older_url
+	else:
+		load_older_el.decompose()  # DECOMPOSE???
 
 	heading_el = soup.select_one(".header h1")
 	heading_el.string = heading
-
-	if kind == "trending":
-		load_older_url = f"/timeline?kind={kind}&offset={(offset or 0) + limit}"
-	else:
-		load_older_url = f"/timeline?kind={kind}&max_id={new_max_id}"
-
-	load_older_el = soup.select_one("#load-older-button")
-	load_older_el.attrs["href"] = load_older_url
-	if not potentially_has_more:
-		load_older_el.decompose()  # DECOMPOSE???
 
 	list_el = soup.select_one(".status-list")
 
