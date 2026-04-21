@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import datetime, date
 from typing import Optional
 
-from pydantic import BaseModel, HttpUrl
+from pydantic import BaseModel, HttpUrl, field_validator
 
 from .custom_emoji import CustomEmoji
 
@@ -39,3 +39,12 @@ class Account(BaseModel):
     statuses_count: int
     followers_count: int
     following_count: int
+
+    @field_validator("emojis", mode="before")
+    @classmethod
+    def remove_null_emojis(cls, data: Any) -> Any:
+        # Fix for GoToSocial emoji objects with empty url values
+        if isinstance(data, list):
+            return [emoji_data for emoji_data in data if emoji_data["url"]]
+        raise ValueError
+
