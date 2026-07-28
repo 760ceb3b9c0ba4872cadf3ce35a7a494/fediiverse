@@ -20,6 +20,8 @@ there is no single fediiverse instance. To get started with fediiverse, find a f
 A fediiverse instance has to act on your behalf with your Fediverse account, so you should trust it! [More information about security](/docs/security-considerations.md)  
 (Your Fediverse instance admins could also provide a fediiverse server for your community, or you could host a fediiverse server just for yourself!)
 
+I maintain a list of active fediiverse instances on my personal website: https://760ceb3b9c0ba4872cadf3ce35a7a494.neocities.org/fediiverse/
+
 ## Hosting
 See [setup instructions](./docs/hosting/setup-instructions.md) to host your own fediiverse instance.
 
