@@ -20,10 +20,10 @@ class Account(BaseModel):
     url: HttpUrl
     display_name: str
     note: str
-    avatar: HttpUrl
-    avatar_static: HttpUrl
-    header: HttpUrl
-    header_static: HttpUrl
+    avatar: Optional[HttpUrl] = None
+    avatar_static: Optional[HttpUrl] = None
+    header: Optional[HttpUrl] = None
+    header_static: Optional[HttpUrl] = None
     locked: bool
     fields: list[AccountField]
     emojis: list[CustomEmoji]
@@ -48,3 +48,10 @@ class Account(BaseModel):
             return [emoji_data for emoji_data in data if emoji_data["url"]]
         raise ValueError
 
+    @field_validator(
+        "avatar", "avatar_static", "header", "header_static",
+        mode="before"
+    )
+    @classmethod
+    def empty_strings_to_none(cls, value):
+        return None if value == "" else value

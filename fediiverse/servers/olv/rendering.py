@@ -473,7 +473,7 @@ def render_status(
 					"class": "media-gallery__item",
 					"colspan": "2" if alone_in_row else "1"
 				})
-				
+
 				min_height = 72
 				max_height = 230
 				if (
@@ -806,12 +806,15 @@ async def render_profile(
 	if account.id == user_id:
 		profile_el["data-is-me"] = "true"
 
-	profile_banner_el = soup.select_one(".profile__banner")
-	profile_banner_el[
-		"style"] = f"background-image: url({get_proxied_url(account.header, max_width=400, max_height=400)!r})"
+	if account.header:
+		profile_banner_el = soup.select_one(".profile__banner")
+		profile_banner_el["style"] = (
+			f"background-image: url({get_proxied_url(account.header, max_width=400, max_height=400)!r})"
+		)
 
-	profile_avatar_el = soup.select_one(".profile__avatar")
-	profile_avatar_el["src"] = get_proxied_url(account.avatar, max_height=52, max_width=52)
+	if account.avatar:
+		profile_avatar_el = soup.select_one(".profile__avatar")
+		profile_avatar_el["src"] = get_proxied_url(account.avatar, max_height=52, max_width=52)
 
 	display_name_el = soup.select_one(".profile__display-name")
 	# noinspection PyTypeChecker
