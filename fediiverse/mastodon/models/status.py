@@ -44,7 +44,7 @@ class Status(BaseModel):
     content: str
     visibility: StatusVisibility   # im so dumb lol
     sensitive: bool
-    spoiler_text: str
+    spoiler_text: Optional[str] = None
     media_attachments: list[MediaAttachment]
     application: Optional[StatusApplication] = None
     mentions: list[StatusMention]
