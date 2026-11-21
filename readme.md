@@ -1,4 +1,4 @@
-<img width="300" height="750" align="right" src="https://github.com/user-attachments/assets/b01f04e8-eed9-4fb2-988f-d20566d6a60b" />
+<img width="300" height="750" align="right" src="/docs/tall-image.png" />
 
 # fediiverse (beta)
 <i>Mastodon and the Fediverse for your Nintendo 3DS!!</i>
